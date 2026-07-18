@@ -1,0 +1,200 @@
+@import "tailwindcss";
+
+/* ============================================================
+   The June 8th Coffee Co. — Design System
+   Coffee-inspired premium design tokens
+   ============================================================ */
+
+@theme {
+  /* ---------- Brand / Coffee Palette ---------- */
+  --color-cream: #faf6f0;
+  --color-cream-50: #fdfbf8;
+  --color-cream-100: #faf6f0;
+  --color-cream-200: #f2e9dc;
+  --color-latte: #e6d5be;
+  --color-caramel: #c8955c;
+  --color-caramel-dark: #a9743d;
+  --color-mocha: #7a5230;
+  --color-coffee: #5b3a21;
+  --color-espresso: #3b2416;
+  --color-espresso-dark: #241108;
+
+  /* ---------- Semantic ---------- */
+  --color-primary: #5b3a21;
+  --color-primary-foreground: #faf6f0;
+  --color-secondary: #c8955c;
+  --color-secondary-foreground: #241108;
+  --color-accent: #a9743d;
+
+  --color-success: #4f8a5b;
+  --color-success-foreground: #f0f7f1;
+  --color-warning: #d99a2b;
+  --color-warning-foreground: #2a1e08;
+  --color-danger: #c0553b;
+  --color-danger-foreground: #fbeeea;
+  --color-info: #4a7ba6;
+
+  /* ---------- Surfaces (light) ---------- */
+  --color-background: #faf6f0;
+  --color-foreground: #241108;
+  --color-card: #ffffff;
+  --color-card-foreground: #241108;
+  --color-muted: #f2e9dc;
+  --color-muted-foreground: #7a6a58;
+  --color-border: #e8dccb;
+  --color-input: #e8dccb;
+  --color-ring: #c8955c;
+
+  /* ---------- Radius ---------- */
+  --radius-xs: 0.375rem;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
+
+  /* ---------- Fonts ---------- */
+  --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-display), Georgia, serif;
+  --font-mono: var(--font-mono), ui-monospace, monospace;
+
+  /* ---------- Shadows (soft, warm) ---------- */
+  --shadow-soft: 0 2px 8px -2px rgba(59, 36, 22, 0.08), 0 4px 16px -4px rgba(59, 36, 22, 0.06);
+  --shadow-card: 0 4px 24px -8px rgba(59, 36, 22, 0.12), 0 2px 8px -4px rgba(59, 36, 22, 0.08);
+  --shadow-float: 0 12px 40px -12px rgba(59, 36, 22, 0.22), 0 4px 16px -6px rgba(59, 36, 22, 0.12);
+  --shadow-glow: 0 0 0 1px rgba(200, 149, 92, 0.2), 0 8px 32px -8px rgba(200, 149, 92, 0.35);
+
+  /* ---------- Animations ---------- */
+  --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ---------- Dark Mode (deep espresso) ---------- */
+.dark {
+  --color-background: #1a110b;
+  --color-foreground: #f2e9dc;
+  --color-card: #241811;
+  --color-card-foreground: #f2e9dc;
+  --color-muted: #2e2018;
+  --color-muted-foreground: #b3a08c;
+  --color-border: #3a2a1e;
+  --color-input: #3a2a1e;
+  --color-ring: #c8955c;
+
+  --color-primary: #c8955c;
+  --color-primary-foreground: #241108;
+  --color-card-foreground: #f2e9dc;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection {
+    background-color: var(--color-caramel);
+    color: var(--color-espresso-dark);
+  }
+}
+
+/* ---------- Utility helpers ---------- */
+@layer utilities {
+  .glass {
+    background: color-mix(in srgb, var(--color-card) 70%, transparent);
+    backdrop-filter: blur(16px) saturate(160%);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+    border: 1px solid color-mix(in srgb, var(--color-border) 60%, transparent);
+  }
+  .glass-strong {
+    background: color-mix(in srgb, var(--color-card) 85%, transparent);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+  }
+  .text-gradient-coffee {
+    background: linear-gradient(120deg, var(--color-mocha), var(--color-caramel));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .bg-coffee-gradient {
+    background: linear-gradient(135deg, var(--color-coffee) 0%, var(--color-espresso) 100%);
+  }
+  .bg-caramel-gradient {
+    background: linear-gradient(135deg, var(--color-caramel) 0%, var(--color-caramel-dark) 100%);
+  }
+  .bg-cream-radial {
+    background:
+      radial-gradient(circle at 15% 0%, color-mix(in srgb, var(--color-latte) 55%, transparent), transparent 45%),
+      radial-gradient(circle at 100% 100%, color-mix(in srgb, var(--color-caramel) 18%, transparent), transparent 45%),
+      var(--color-background);
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* ---------- Scrollbar ---------- */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--color-caramel) 45%, transparent);
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in srgb, var(--color-caramel) 70%, transparent);
+  background-clip: content-box;
+}
+
+/* ---------- Keyframes ---------- */
+@keyframes float-bean {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-18px) rotate(8deg); }
+}
+@keyframes shimmer {
+  100% { transform: translateX(100%); }
+}
+.animate-float-slow { animation: float-bean 9s var(--ease-smooth) infinite; }
+.animate-float-slower { animation: float-bean 13s var(--ease-smooth) infinite; }
+
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-muted);
+}
+.skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--color-card) 60%, transparent), transparent);
+  animation: shimmer 1.6s infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
