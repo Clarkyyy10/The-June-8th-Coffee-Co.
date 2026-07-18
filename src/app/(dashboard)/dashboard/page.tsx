@@ -31,6 +31,7 @@ import { ActivityFeed } from "@/features/dashboard/activity-feed";
 import { AnimatedCounter } from "@/components/ui/animated-counter";
 import { useStore } from "@/lib/store";
 import { useHydrated } from "@/lib/hooks";
+import { useCurrentUser } from "@/lib/user-context";
 import {
   dashboardStats,
   salesTrend,
@@ -55,6 +56,8 @@ import {
 
 export default function DashboardPage() {
   const hydrated = useHydrated();
+  const user = useCurrentUser();
+  const firstName = user?.name?.split(" ")[0] || "there";
   const orders = useStore((s) => s.orders);
   const products = useStore((s) => s.products);
   const salesGoal = useStore((s) => s.settings.salesGoal);
@@ -120,7 +123,7 @@ export default function DashboardPage() {
   return (
     <div className="mx-auto max-w-[1400px]">
       <PageHeader
-        title="Good day, Maria ☕"
+        title={`Good day, ${firstName} ☕`}
         description={`Here's how The June 8th Coffee Co. is performing today.`}
       >
         <Button asChild variant="outline" size="sm">

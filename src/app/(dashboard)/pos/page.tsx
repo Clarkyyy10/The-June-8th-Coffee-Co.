@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import toast from "react-hot-toast";
 import { useStore } from "@/lib/store";
 import { useHydrated } from "@/lib/hooks";
+import { useCurrentUser } from "@/lib/user-context";
 import { useCart, type CartLine } from "@/features/pos/cart-store";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -54,6 +55,7 @@ interface ReceiptData {
 
 export default function POSPage() {
   const hydrated = useHydrated();
+  const user = useCurrentUser();
   const products = useStore((s) => s.products);
   const cupSizes = useStore((s) => s.cupSizes);
   const placeOrder = useStore((s) => s.placeOrder);
@@ -143,7 +145,7 @@ export default function POSPage() {
       status: "COMPLETED",
       type: "DINE_IN",
       customer: "Walk-in",
-      cashier: "Maria Villanueva",
+      cashier: user?.name || "Staff",
       items: cart.lines.map((l) => ({
         productId: l.product.id,
         name: l.product.name,
