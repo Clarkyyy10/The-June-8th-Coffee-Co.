@@ -6,6 +6,7 @@ import { Sidebar } from "./sidebar";
 import { Topbar } from "./topbar";
 import { CommandPalette } from "./command-palette";
 import { UserProvider } from "@/lib/user-context";
+import { CloudSync } from "@/features/cloud/cloud-sync";
 import type { SessionPayload } from "@/lib/demo-auth";
 
 export function AppShell({
@@ -19,6 +20,7 @@ export function AppShell({
 
   return (
     <UserProvider user={user}>
+    <CloudSync />
     <div className="relative flex h-screen overflow-hidden bg-cream-radial">
       {/* Decorative floating beans */}
       <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
